@@ -17,12 +17,12 @@ namespace CustomMessageBox
         /// <param name="MessageBoxTitle"></param>
         /// <param name="MessageText"></param>
         /// <param name="AutoCloseSpan"></param>
-        public MyMessageBox(string MessageBoxTitle, string MessageText, TimeSpan AutoCloseSpan)
+        public MyMessageBox(string MessageBoxTitle, string MessageText, int SecondsToAutoClose)
         {
             InitializeComponent();
             this.Text = MessageBoxTitle;
             Message_lbl.Text = MessageText;
-            timer = AutoCloseSpan;
+            timer = new TimeSpan().Add(TimeSpan.FromSeconds(SecondsToAutoClose));
             pictureBox.Image = System.Drawing.SystemIcons.Information.ToBitmap();
         }
 
