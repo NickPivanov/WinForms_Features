@@ -13,8 +13,7 @@ namespace CustomMessageBox
         private void Demo_btn_Click(object sender, EventArgs e)
         {
             MyMessageBox myMessageBox = new MyMessageBox("Test", "Message text", 3);
-            myMessageBox.Show();
-            myMessageBox.MessageBoxShown += async () => await myMessageBox.InitializeAutoCloseAsync();
+            myMessageBox.ShowDialog();
         }
     }
 }

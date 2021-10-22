@@ -7,12 +7,9 @@ namespace CustomMessageBox
     public partial class MyMessageBox : Form
     {
         private TimeSpan timer;
-        public event Action MessageBoxShown;
 
         /// <summary>
-        /// To activate auto close, subscribe MessageBoxShown event,
-        /// on subscription call InitializeAutoCloseAsync()
-        /// ex.: myMessageBox.MessageBoxShown += async () => await myMessageBox.InitializeAutoCloseAsync();
+        /// Auto-close form.
         /// </summary>
         /// <param name="MessageBoxTitle"></param>
         /// <param name="MessageText"></param>
@@ -30,13 +27,12 @@ namespace CustomMessageBox
         {
             this.Close();
         }
-
-        private void MyMessageBox_Shown(object sender, EventArgs e)
+        private async void MyMessageBox_Activated(object sender, EventArgs e)
         {
-            MessageBoxShown?.Invoke();
+            await InitializeAutoCloseAsync();
         }
 
-        public async Task InitializeAutoCloseAsync()
+        private async Task InitializeAutoCloseAsync()
         {
             while (timer > new TimeSpan(0, 0, 0))
             {
@@ -47,5 +43,7 @@ namespace CustomMessageBox
 
             this.Close();
         }
+
+
     }
 }

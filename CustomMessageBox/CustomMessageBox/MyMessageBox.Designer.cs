@@ -96,7 +96,7 @@ namespace CustomMessageBox
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MyMessageBox";
-            this.Shown += new System.EventHandler(this.MyMessageBox_Shown);
+            this.Activated += new System.EventHandler(this.MyMessageBox_Activated);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
