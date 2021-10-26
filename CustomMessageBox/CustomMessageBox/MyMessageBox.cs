@@ -6,7 +6,7 @@ namespace CustomMessageBox
 {
     public partial class MyMessageBox : Form
     {
-        private TimeSpan timer;
+        private int _secondsToAutoClose;
 
         /// <summary>
         /// Auto-close form.
@@ -19,7 +19,7 @@ namespace CustomMessageBox
             InitializeComponent();
             this.Text = MessageBoxTitle;
             Message_lbl.Text = MessageText;
-            timer = new TimeSpan().Add(TimeSpan.FromSeconds(SecondsToAutoClose));
+            _secondsToAutoClose = SecondsToAutoClose;
             pictureBox.Image = System.Drawing.SystemIcons.Information.ToBitmap();
         }
 
@@ -34,10 +34,10 @@ namespace CustomMessageBox
 
         private async Task InitializeAutoCloseAsync()
         {
-            while (timer > new TimeSpan(0, 0, 0))
+            while (_secondsToAutoClose > 0)
             {
-                Ok_btn.Text = $"Ok...{timer.Seconds}";
-                timer = timer.Add(TimeSpan.FromSeconds(-1));
+                Ok_btn.Text = $"Ok...{_secondsToAutoClose}";
+                _secondsToAutoClose--;
                 await Task.Delay(1000);
             }
 
